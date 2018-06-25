@@ -1,0 +1,209 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/moon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/css/zenburn.min.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2> Hoisting en JavaScript</h2>
+
+            </section>
+            <section>
+                <h5>Définition</h5>
+                <blockquote cite="http://www.ecma-international.org/ecma-262/5.1/#sec-10.5">
+                    <span class="fragment">Every execution context has an associated
+                        <b>VariableEnvironment</b>.</span>
+                    <span class="fragment">
+                        <b>Variables</b> and
+                        <b>functions</b> declared in
+                        <b>ECMAScript</b> code evaluated in an execution context are added as bindings in that
+                        <b>VariableEnvironment’s Environment Record</b>.</span>
+                </blockquote>
+            </section>
+            <section data-background="https://media.giphy.com/media/aZ3LDBs1ExsE8/giphy.gif">
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                    <code class="hljs javascript">
+    var a = 1; // global
+
+
+    function exemple() {
+        var a = 2; // local
+                            
+
+
+
+
+
+    }
+                    </code>
+                </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                    <code class="hljs javascript">
+    var a = 1; // global
+
+
+    function exemple() {
+        var a = 2; // local
+    
+
+        if(a === 2) {
+            var b = 3;
+        }
+
+    }
+                    </code>
+                </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                        <code class="hljs javascript">
+    var a = 1; // global
+    console.log(b); // valeur ?
+
+    function exemple() {
+        var a = 2; // local
+
+        console.log(b); // valeur ?
+        if(a === 2) {
+            var b = 3;
+        }
+        console.log(b); // valeur ?
+    }
+                        </code>
+                    </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                            <code class="hljs javascript">
+    var a = 1; // global
+    console.log(b); // Uncaught ReferenceError: b is not defined
+            
+    function exemple() {
+        var a = 2; // local
+            
+        console.log(b); // undefined
+        if(a === 2) {
+            var b = 3;
+        }
+        console.log(b); // 3
+    }
+                            </code>
+                        </pre>
+                <img class="fragment" style="border: none;position: absolute;top: 207px;height: 246px;" src="https://media.giphy.com/media/iXTrbbYMQBCMM/giphy.gif" />
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                            <code class="hljs javascript">
+    var a = 1; // global
+    console.log(b); // Uncaught ReferenceError: b is not defined
+                
+    function exemple() {
+        var a = 2, b; // local
+            
+        console.log(b); // undefined
+        if(a === 2) {
+            b = 3;
+        }
+        console.log(b); // 3
+    }
+                                </code>
+                            </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                                <code class="hljs javascript">
+    var a = 1; // global
+    console.log(b); // Uncaught ReferenceError: b is not defined
+                    
+    function exemple() {
+        var a = 2; // local
+                
+        console.log(b); // undefined
+        if(a === 522) {
+            var b = 3;
+        }
+        console.log(b); // valeur ?
+    }
+                                    </code>
+                                </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                                    <code class="hljs javascript">
+    var a = 1; // global
+    console.log(b); // Uncaught ReferenceError: b is not defined
+                        
+    function exemple() {
+        var a = 2; // local
+                    
+        console.log(b); // undefined
+        if(a === 522) {
+            var b = 3;
+        }
+        console.log(b); // undefined
+    }
+                                        </code>
+                                    </pre>
+            </section>
+            <!--<section data-background="https://media.giphy.com/media/xTk9ZSGSVrnfffXTb2/giphy.gif"></section>-->
+            <section data-background="https://media.giphy.com/media/l0HlQ7LRalQqdWfao/giphy.gif"></section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                    <code class="hljs javascript">
+    var i = 21;
+
+    for (var i = 0 ; i < 20; i++) {
+        ...
+    }
+
+    console.log(i); // valeur ?
+                    </code>
+                </pre>
+            </section>
+            <section data-transition="none">
+                <h5>Domaine de définition et hoisting</h5>
+                <pre style="box-shadow: none;width: 100%;">
+                        <code class="hljs javascript">
+    var i = 21;
+    
+    for (var i = 0 ; i < 20; i++) {
+        ...
+    }
+    
+    console.log(i); // 20
+                        </code>
+                </pre>
+            </section>
+            <section data-background="https://media.giphy.com/media/lD76yTC5zxZPG/giphy.gif"></section>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            dependencies: [
+                { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/highlight/highlight.min.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+            ]
+        });
+    </script>
+</body>
+
+</html>
